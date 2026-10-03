@@ -1,5 +1,5 @@
 import React from 'react';
-// import SearchBar from './SearchBar'; // นำเข้า SearchBar
+import SearchBar from './SearchBar'; // นำเข้า SearchBar
 
 export default function HeroSection() {
   return (
@@ -33,7 +33,7 @@ export default function HeroSection() {
         
         {/* พื้นที่สำหรับวาง SearchBar */}
         <div className="w-full mt-6">
-          {/* <SearchBar /> */}
+          <SearchBar />
         </div>
         
       </div>
