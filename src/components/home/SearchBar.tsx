@@ -19,7 +19,8 @@ export default function SearchBar() {
     return (
         <form onSubmit={handleSubmit} //ผูกฟังก์ชัน handleSubmit เข้ากับ event onSubmit ของ form
         //ตกแต่ง SearchBar
-        className="flex items-center w-full max-w-lg mx-auto bg-[var(--color-surface)] rounded-[var(--radius-full)] p-[var(--space-2)] shadow-[var(--shadow-card)]">
+        className="flex items-center w-full max-w-lg mx-auto bg-[var(--color-surface)] rounded-[var(--radius-full)]
+            p-[var(--space-2)] shadow-[var(--shadow-card)]">
 
             <input //ช่องค้นหา
                 type = "text"
@@ -27,11 +28,13 @@ export default function SearchBar() {
                 onChange = {(e) => setQuery(e.target.value)} //เมื่อมีการพิมพ์ข้อความในช่องค้นหา จะเอาค่าที่พิมพ์ไปอัพเดตลง state query ทันที
                 placeholder = "ค้าหาสถานที่ท่องเที่ยวในเชียงใหม่..."
                 aria-label = "ช่องค้นหา"
-                className="flex-grow text-[var(--color-text)] placeholder:text-[var(--color-muted)] bg-transparent outline-none px-[var(--space-4)] py-[var(--space-2)] rounded-l-[var(--radius-full)]"
+                className="flex-grow text-[var(--color-text)] placeholder:text-[var(--color-muted)] bg-transparent outline-none
+                    px-[var(--space-4)] py-[var(--space-2)] rounded-l-[var(--radius-full)]"
             />
             <button
                 type = "submit"
-                className="text-[var(--color-surface)] bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] px-[var(--space-6)] py-[var(--space-2)] rounded-[var(--radius-full)] font-medium transition-colors"
+                className="text-[var(--color-surface)] bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)]
+                    px-[var(--space-6)] py-[var(--space-2)] rounded-[var(--radius-full)] font-medium transition-colors"
             >ค้นหา</button>
         </form>
     )
