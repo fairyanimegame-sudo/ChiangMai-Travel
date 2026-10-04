@@ -1,50 +1,60 @@
 import Link from "next/link";
 import type { Place } from "@/types/place";
 import PlaceCard from "./PlaceCard";
- 
 
+// ---------- Derived data ----------
+// คำนวณจากรายการ places ชุดเดียว ไม่เก็บข้อมูลซ้ำแยกตามหัวข้อ
+
+/** มาแรงตอนนี้: เฉพาะที่มี trendingRank เรียงจากอันดับ 1 ขึ้นไป */
 export function getTrendingPlaces(places: Place[], limit?: number): Place[] {
   const trending = places
     .filter((place) => place.trendingRank !== undefined)
     .sort((a, b) => (a.trendingRank ?? 0) - (b.trendingRank ?? 0));
   return limit === undefined ? trending : trending.slice(0, limit);
 }
- 
+
 /** แนะนำห้ามพลาด: เฉพาะที่ isRecommended เป็น true */
 export function getRecommendedPlaces(places: Place[], limit?: number): Place[] {
   const recommended = places.filter((place) => place.isRecommended === true);
   return limit === undefined ? recommended : recommended.slice(0, limit);
 }
- 
+
 type PlaceSectionProps = {
   title: string;
   subtitle: string;
   places: Place[];
+  /** true = แสดงป้ายอันดับจาก place.trendingRank (ใช้กับ "มาแรงตอนนี้") */
   showRank?: boolean;
- 
+  /** ปลายทางของลิงก์ "ดูทั้งหมด" (ตกลงกับทีมอีกครั้ง ตอนนี้ใช้ /places ชั่วคราว) */
   viewAllHref?: string;
 };
- 
+
+// สไตล์ทั้งหมดอ้างอิง design tokens ใน globals.css และใช้ class .container สำหรับความกว้างหน้า
 export default function PlaceSection({
   title,
   subtitle,
   places,
   showRank = false,
-  viewAllHref = "/places", /** ปลายทางของลิงก์ "ดูทั้งหมด" (/places หรือจะใช้อะไรแล้วแต่เลย) */
+  viewAllHref = "/places",
 }: PlaceSectionProps) {
   if (places.length === 0) return null;
- 
+
   return (
-    <section>
-      <div>
+    <section className="container py-[var(--space-8)]">
+      <div className="mb-[var(--space-4)] flex items-end justify-between gap-[var(--space-4)]">
         <div>
-          <h2>{title}</h2>
-          <p>{subtitle}</p>
+          <h2 className="text-2xl font-bold text-[color:var(--color-text)]">{title}</h2>
+          <p className="text-sm text-[color:var(--color-muted)]">{subtitle}</p>
         </div>
-        <Link href={viewAllHref}>ดูทั้งหมด</Link>
+        <Link
+          href={viewAllHref}
+          className="shrink-0 text-sm font-medium text-[color:var(--color-primary)]! hover:text-[color:var(--color-primary-dark)]! hover:underline"
+        >
+          ดูทั้งหมด →
+        </Link>
       </div>
- 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+      <div className="grid grid-cols-1 gap-[var(--space-4)] sm:grid-cols-2 sm:gap-[var(--space-6)] lg:grid-cols-4">
         {places.map((place) => (
           <PlaceCard
             key={place.id}
@@ -56,6 +66,3 @@ export default function PlaceSection({
     </section>
   );
 }
- 
-
-// ยังไม่ตกแต่ง (ยังไม่ได้ตกแต่ง className / สไตล์) ให้เพื่อนเติมเองได้ Tailwind
