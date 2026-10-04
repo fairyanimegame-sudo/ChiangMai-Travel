@@ -1,9 +1,10 @@
 import Link from "next/link";
 import type { Place } from "@/types/place";
-import PlaceCard from "./PlaceCard";
+import PlaceCard, { EXPLORE_PATH } from "./PlaceCard";
 
 // ---------- Derived data ----------
 // คำนวณจากรายการ places ชุดเดียว ไม่เก็บข้อมูลซ้ำแยกตามหัวข้อ
+// หน้าอื่นเรียกใช้ได้เลย เช่น <PlaceSection places={getTrendingPlaces(places, 4)} />
 
 /** มาแรงตอนนี้: เฉพาะที่มี trendingRank เรียงจากอันดับ 1 ขึ้นไป */
 export function getTrendingPlaces(places: Place[], limit?: number): Place[] {
@@ -25,8 +26,10 @@ type PlaceSectionProps = {
   places: Place[];
   /** true = แสดงป้ายอันดับจาก place.trendingRank (ใช้กับ "มาแรงตอนนี้") */
   showRank?: boolean;
-  /** ปลายทางของลิงก์ "ดูทั้งหมด" (ตกลงกับทีมอีกครั้ง ตอนนี้ใช้ /places ชั่วคราว) */
+  /** ปลายทางของลิงก์ "ดูทั้งหมด" ค่าเริ่มต้น EXPLORE_PATH (เส้นทางเดียวกับลิงก์ของการ์ด) */
   viewAllHref?: string;
+  /** กำหนดลิงก์ของแต่ละการ์ดเอง ถ้าไม่ส่งมา PlaceCard จะใช้ {EXPLORE_PATH}/{id} */
+  placeHref?: (place: Place) => string;
 };
 
 // สไตล์ทั้งหมดอ้างอิง design tokens ใน globals.css และใช้ class .container สำหรับความกว้างหน้า
@@ -35,7 +38,8 @@ export default function PlaceSection({
   subtitle,
   places,
   showRank = false,
-  viewAllHref = "/places",
+  viewAllHref = EXPLORE_PATH,
+  placeHref,
 }: PlaceSectionProps) {
   if (places.length === 0) return null;
 
@@ -60,6 +64,7 @@ export default function PlaceSection({
             key={place.id}
             place={place}
             rank={showRank ? place.trendingRank : undefined}
+            href={placeHref?.(place)}
           />
         ))}
       </div>
