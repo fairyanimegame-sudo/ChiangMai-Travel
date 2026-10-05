@@ -6,8 +6,8 @@ type TripIdeaCardProps = {
   trip: TripIdea;
 };
 
-// path หน้าแผนเที่ยว ต้องตกลงกับทีมก่อน (ตอนนี้ใช้ /plan ชั่วคราว)
-const PLAN_PATH = "/plan";
+// path หน้าจัดทริป ตรงกับเมนู "จัดทริป" ใน Navbar (ถ้าเปลี่ยนชื่อ ให้แก้ที่นี่ที่เดียว)
+const PLAN_PATH = "/planner";
 
 function buildPlanHref(trip: TripIdea): string {
   const params = new URLSearchParams({

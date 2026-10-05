@@ -1,4 +1,6 @@
-export const categories = [
+import { CategoryGroup } from "@/types/category";
+
+export const categories: CategoryGroup[] = [
   {
     //หมวด1
     id: "culture",
