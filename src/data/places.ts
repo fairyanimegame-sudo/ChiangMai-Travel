@@ -83,7 +83,7 @@ export const places: Place[] = [
     image: "/images/places/elephant-nature-park.jpg",
     isRecommended: true,
   },
-    {
+  {
     id: "11",
     name: "ม่อนแจ่ม",
     category: "ธรรมชาติ / จุดชมวิว",
@@ -99,7 +99,7 @@ export const places: Place[] = [
     image: "/images/places/maya-chiang-mai.jpg",
     isRecommended: true,
   },
-    {
+  {
     id: "13",
     name: "บ้านแม่กำปอง",
     category: "ธรรมชาติ / หมู่บ้านบนเขา",
