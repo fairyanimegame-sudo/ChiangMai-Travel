@@ -1,0 +1,136 @@
+[1mdiff --git a/src/data/places.ts b/src/data/places.ts[m
+[1mindex e69de29..27d4c3c 100644[m
+[1m--- a/src/data/places.ts[m
+[1m+++ b/src/data/places.ts[m
+[36m@@ -0,0 +1,130 @@[m
+[32m+[m[32mimport type { Place } from "@/types/place";[m
+[32m+[m
+[32m+[m[32mexport const places: Place[] = [[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "1",[m
+[32m+[m[32m    name: "วัดพระธาตุดอยสุเทพ",[m
+[32m+[m[32m    category: "วัด / วัฒนธรรม",[m
+[32m+[m[32m    rating: 4.8,[m
+[32m+[m[32m    image: "/images/places/doi-suthep.jpg",[m
+[32m+[m[32m    trendingRank: 1,[m
+[32m+[m[32m    isRecommended: true,[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "2",[m
+[32m+[m[32m    name: "ดอยอินทนนท์",[m
+[32m+[m[32m    category: "ธรรมชาติ / ภูเขา",[m
+[32m+[m[32m    rating: 4.8,[m
+[32m+[m[32m    image: "/images/places/doi-inthanon.jpg",[m
+[32m+[m[32m    trendingRank: 2,[m
+[32m+[m[32m    isRecommended: true,[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "3",[m
+[32m+[m[32m    name: "วัดพระสิงห์วรมหาวิหาร",[m
+[32m+[m[32m    category: "วัด / วัฒนธรรม",[m
+[32m+[m[32m    rating: 4.7,[m
+[32m+[m[32m    image: "/images/places/wat-phra-singh.jpg",[m
+[32m+[m[32m    isRecommended: true,[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "4",[m
+[32m+[m[32m    name: "วัดเจดีย์หลวงวรวิหาร",[m
+[32m+[m[32m    category: "วัด / โบราณสถาน",[m
+[32m+[m[32m    rating: 4.7,[m
+[32m+[m[32m    image: "/images/places/wat-chedi-luang.jpg",[m
+[32m+[m[32m    trendingRank: 5,[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "5",[m
+[32m+[m[32m    name: "วัดอุโมงค์สวนพุทธธรรม",[m
+[32m+[m[32m    category: "วัด / ธรรมชาติ",[m
+[32m+[m[32m    rating: 4.6,[m
+[32m+[m[32m    image: "/images/places/wat-umong.jpg",[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "6",[m
+[32m+[m[32m    name: "น้ำตกห้วยแก้ว",[m
+[32m+[m[32m    category: "ธรรมชาติ / น้ำตก",[m
+[32m+[m[32m    rating: 4.5,[m
+[32m+[m[32m    image: "/images/places/huay-kaew-waterfall.jpg",[m
+[32m+[m[32m    trendingRank: 3,[m
+[32m+[m[32m    isRecommended: true,[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "7",[m
+[32m+[m[32m    name: "ย่านนิมมานเหมินทร์",[m
+[32m+[m[32m    category: "คาเฟ่ / ช้อปปิ้ง",[m
+[32m+[m[32m    rating: 4.5,[m
+[32m+[m[32m    image: "/images/places/nimman.jpg",[m
+[32m+[m[32m    trendingRank: 4,[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "8",[m
+[32m+[m[32m    name: "ประตูท่าแพ",[m
+[32m+[m[32m    category: "สถานที่ท่องเที่ยว / ประตูเมืองเก่า",[m
+[32m+[m[32m    rating: 4.5,[m
+[32m+[m[32m    image: "/images/places/tha-phae-gate.jpg",[m
+[32m+[m[32m    isRecommended: true,[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "9",[m
+[32m+[m[32m    name: "น้ำตกบัวตอง (น้ำตกน้ำพุเจ้าชาย)",[m
+[32m+[m[32m    category: "ธรรมชาติ / น้ำตก",[m
+[32m+[m[32m    rating: 4.6,[m
+[32m+[m[32m    image: "/images/places/bua-thong.jpg",[m
+[32m+[m[32m    trendingRank: 6,[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "10",[m
+[32m+[m[32m    name: "Elephant Nature Park",[m
+[32m+[m[32m    category: "กิจกรรม / สัตว์",[m
+[32m+[m[32m    rating: 4.8,[m
+[32m+[m[32m    image: "/images/places/elephant-nature-park.jpg",[m
+[32m+[m[32m    isRecommended: true,[m
+[32m+[m[32m  },[m
+[32m+[m[32m    {[m
+[32m+[m[32m    id: "11",[m
+[32m+[m[32m    name: "ม่อนแจ่ม",[m
+[32m+[m[32m    category: "ธรรมชาติ / จุดชมวิว",[m
+[32m+[m[32m    rating: 4.6,[m
+[32m+[m[32m    image: "/images/places/mon-cham.jpg",[m
+[32m+[m[32m    isRecommended: true,[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "12",[m
+[32m+[m[32m    name: "เมญ่า (MAYA)",[m
+[32m+[m[32m    category: "ช้อปปิ้ง / ห้างสรรพสินค้า",[m
+[32m+[m[32m    rating: 4.5,[m
+[32m+[m[32m    image: "/images/places/maya-chiang-mai.jpg",[m
+[32m+[m[32m    isRecommended: true,[m
+[32m+[m[32m  },[m
+[32m+[m[32m    {[m
+[32m+[m[32m    id: "13",[m
+[32m+[m[32m    name: "บ้านแม่กำปอง",[m
+[32m+[m[32m    category: "ธรรมชาติ / หมู่บ้านบนเขา",[m
+[32m+[m[32m    rating: 4.6,[m
+[32m+[m[32m    image: "/images/places/ban-mae-kampong.jpg",[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "14",[m
+[32m+[m[32m    name: "ตลาดวโรรส (กาดหลวง)",[m
+[32m+[m[32m    category: "ตลาด / ของฝาก",[m
+[32m+[m[32m    rating: 4.4,[m
+[32m+[m[32m    image: "/images/places/warorot-market.jpg",[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "15",[m
+[32m+[m[32m    name: "บ้านค่างวัด (Baan Kang Wat)",[m
+[32m+[m[32m    category: "คาเฟ่ / ศิลปะ",[m
+[32m+[m[32m    rating: 4.5,[m
+[32m+[m[32m    image: "/images/places/baan-kang-wat.jpg",[m
+[32m+[m[32m  },[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: "16",[m
+[32m+[m[32m    name: "เชียงใหม่ไนท์ซาฟารี",[m
+[32m+[m[32m    category: "กิจกรรม / ท่องเที่ยวกลางคืน",[m
+[32m+[m[32m    rating: 4.4,[m
+[32m+[m[32m    image: "/images/places/chiang-mai-night-safari.jpg",[m
+[32m+[m[32m  },[m
+[32m+[m[32m];[m
+\ No newline at end of file[m
