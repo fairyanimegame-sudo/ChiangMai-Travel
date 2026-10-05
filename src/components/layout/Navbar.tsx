@@ -1,6 +1,6 @@
 import Link from "next/link";
 import NavLinks from "./NavbarLinks";
-import styles from "./Navbar .module.css";
+import styles from "./Navbar.module.css";
 
 export default function Navbar() {
   return (

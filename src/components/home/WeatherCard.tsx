@@ -8,6 +8,20 @@ type WeatherCardProps = {
   longitude: number;
 };
 
+const cardClass =
+  "rounded-[var(--radius-lg)] border border-[color:var(--color-border)] bg-[var(--color-surface)] p-[var(--space-4)] [box-shadow:var(--shadow-card)]";
+
+function Stat({ label, value, unit }: { label: string; value: number; unit: string }) {
+  return (
+    <div>
+      <dt className="text-sm text-[color:var(--color-muted)]">{label}</dt>
+      <dd className="text-lg font-semibold text-[color:var(--color-text)]">
+        {value} <span className="text-sm font-normal text-[color:var(--color-muted)]">{unit}</span>
+      </dd>
+    </div>
+  );
+}
+
 export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
   const [weather, setWeather] = useState<WeatherResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -33,18 +47,22 @@ export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
 
   if (loading) {
     return (
-      <section>
-        <h2>สภาพอากาศ</h2>
-        <p>กำลังโหลดข้อมูลสภาพอากาศ...</p>
+      <section className={cardClass} aria-busy="true">
+        <h2 className="text-lg font-bold text-[color:var(--color-text)]">สภาพอากาศ</h2>
+        <p className="mt-[var(--space-2)] text-sm text-[color:var(--color-muted)]">
+          กำลังโหลดข้อมูลสภาพอากาศ...
+        </p>
       </section>
     );
   }
 
   if (error) {
     return (
-      <section>
-        <h2>สภาพอากาศ</h2>
-        <p>{error}</p>
+      <section className={cardClass}>
+        <h2 className="text-lg font-bold text-[color:var(--color-text)]">สภาพอากาศ</h2>
+        <p role="alert" className="mt-[var(--space-2)] text-sm text-[color:var(--color-primary)]">
+          {error}
+        </p>
       </section>
     );
   }
@@ -53,26 +71,26 @@ export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
     return null;
   }
 
+  const { current, current_units: units } = weather;
+
   return (
-    <section>
-      <h2>สภาพอากาศ</h2>
+    <section className={cardClass}>
+      <h2 className="text-lg font-bold text-[color:var(--color-text)]">สภาพอากาศ</h2>
 
-      <p>
-        อุณหภูมิ {weather.current.temperature_2m} {weather.current_units.temperature_2m}
-      </p>
-
-      <p>
-        ความชื้น {weather.current.relative_humidity_2m} {weather.current_units.relative_humidity_2m}
-      </p>
-
-      <p>
-        อุณหภูมิที่รู้สึก {weather.current.apparent_temperature}{" "}
-        {weather.current_units.apparent_temperature}
-      </p>
-
-      <p>
-        ความเร็วลม {weather.current.wind_speed_10m} {weather.current_units.wind_speed_10m}
-      </p>
+      <dl className="mt-[var(--space-4)] grid grid-cols-2 gap-[var(--space-4)]">
+        <Stat label="อุณหภูมิ" value={current.temperature_2m} unit={units.temperature_2m} />
+        <Stat
+          label="รู้สึกเหมือน"
+          value={current.apparent_temperature}
+          unit={units.apparent_temperature}
+        />
+        <Stat
+          label="ความชื้น"
+          value={current.relative_humidity_2m}
+          unit={units.relative_humidity_2m}
+        />
+        <Stat label="ความเร็วลม" value={current.wind_speed_10m} unit={units.wind_speed_10m} />
+      </dl>
     </section>
   );
 }
