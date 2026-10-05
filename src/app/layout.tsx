@@ -15,7 +15,7 @@ const notoSansThai = Noto_Sans_Thai({
 }); */
 
 export const metadata: Metadata = {
-  title: "คู่มือเที่ยวเชียงใหม่ล้านนนา",
+  title: "คู่มือเที่ยวเชียงใหม่ล้านนา",
   description: "ค้นหาวัด คาเฟ่ ธรรมชาติ และของอร่อยในเชียงใหม่",
 };
 

@@ -1,5 +1,7 @@
+export type CategoryId = "culture" | "nature" | "food" | "nightmarket" | "shopping" | "art";
+
 export type CategoryGroup = {
-  id: string; // "temple", "nature", "food" ...
+  id: CategoryId;
   emoji: string;
   label: string; // ข้อความบน chip เช่น "วัฒนธรรม"
 };
