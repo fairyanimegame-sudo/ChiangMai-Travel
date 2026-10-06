@@ -24,7 +24,7 @@ export default function MapPlaceList({
   }
 
   return (
-    <div className="h-full overflow-y-auto">
+    <div className="h-[400px] overflow-y-auto pr-1 md:h-[550px]">
       <div className="grid gap-3">
         {places.map((place) => {
           const isSelected = place.id === selectedPlaceId;
