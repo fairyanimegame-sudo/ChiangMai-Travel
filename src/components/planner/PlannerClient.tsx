@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import EmptyState from "@/components/shared/EmptyState";
 import { places } from "@/data/places";
 import { trips } from "@/data/trips";
 import { useLocalStorage } from "@/lib/useLocalStorage";
 import type { Place } from "@/types/place";
-import AddPlaceSelect from "./AddPlaceSelect";
+import AddPlaceSearch from "./AddPlaceSearch";
 import PlanSummary from "./PlanSummary";
 import PlannerList from "./PlannerList";
+import StartTripButton from "./StartTripButton";
 
 type PlannerClientProps = {
   initialPlaceIds: string[];
@@ -23,7 +24,6 @@ export default function PlannerClient({ initialPlaceIds, tripId }: PlannerClient
     EMPTY_PLAN,
   );
   const [planName, setPlanName] = useLocalStorage<string>("planner-name", "");
-  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (initialPlaceIds.length > 0) {
@@ -51,18 +51,6 @@ export default function PlannerClient({ initialPlaceIds, tripId }: PlannerClient
     setPlanIds(next);
   };
 
-  const handleCopyLink = async () => {
-    const params = new URLSearchParams({ places: planIds.join(",") });
-    const url = `${window.location.origin}/planner?${params.toString()}`;
-    try {
-      await navigator.clipboard.writeText(url);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      setCopied(false);
-    }
-  };
-
   if (!isLoaded) {
     return (
       <p className="container py-[var(--space-8)] text-[color:var(--color-muted)]">
@@ -80,7 +68,7 @@ export default function PlannerClient({ initialPlaceIds, tripId }: PlannerClient
         tripTitle={trip?.title}
       />
 
-      <AddPlaceSelect available={available} onAdd={handleAdd} />
+      <AddPlaceSearch available={available} onAdd={handleAdd} />
 
       {selected.length === 0 ? (
         <EmptyState
@@ -93,14 +81,8 @@ export default function PlannerClient({ initialPlaceIds, tripId }: PlannerClient
       ) : (
         <>
           <PlannerList items={selected} onMove={handleMove} onRemove={handleRemove} />
-          <div className="flex flex-wrap gap-[var(--space-3)]">
-            <button
-              type="button"
-              onClick={handleCopyLink}
-              className="rounded-[var(--radius-full)] bg-[var(--color-primary)] px-[var(--space-6)] py-[var(--space-2)] font-medium text-white hover:bg-[var(--color-primary-dark)]"
-            >
-              {copied ? "คัดลอกแล้ว ✓" : "คัดลอกลิงก์แผน"}
-            </button>
+          <div className="flex flex-wrap items-start gap-[var(--space-3)]">
+            <StartTripButton places={selected} />
             <button
               type="button"
               onClick={() => setPlanIds([])}
