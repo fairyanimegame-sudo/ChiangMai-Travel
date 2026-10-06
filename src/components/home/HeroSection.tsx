@@ -7,7 +7,7 @@ export default function HeroSection() {
       //   กำหนดความสูงและจัดให้อยู่กึ่งกลาง
       className="relative w-full h-[100vh] min-h-[400px] flex items-center justify-center bg-cover bg-center"
       // เปลี่ยนพาธรูปภาพเมื่อได้รับไฟล์รูปจริงจากโฟลเดอร์ public/images/hero-placeholder.jpg (ต้องตั้งชื่อให้ตรง)
-      style={{ backgroundImage: "url('/images/places/hero-placeholder.jpg')" }}
+      style={{ backgroundImage: "url('/images/places/maya-chiang-mai.jpg')" }}
     >
       {/* เลเยอร์สีดำโปร่งแสง */}
       <div className="absolute inset-0 bg-black/50 z-0"></div>
