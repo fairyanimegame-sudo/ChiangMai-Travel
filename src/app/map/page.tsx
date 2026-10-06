@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { places } from "@/data/places";
-import MapPlaceList from "@/components/map/MapPlaceList";
+import MapPlaceList from "@/app/map/MapPlaceList";
 
-const PlaceMap = dynamic(() => import("@/components/map/PlaceMap"), {
+const PlaceMap = dynamic(() => import("@/app/map/PlaceMap"), {
   ssr: false,
   loading: () => (
     <div className="flex h-[400px] items-center justify-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] md:h-[550px]">
