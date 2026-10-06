@@ -168,7 +168,7 @@ export default function PlaceMap({
   selectedPlaceId,
 }: PlaceMapProps) {
   return (
-    <div className="w-full overflow-hidden rounded-2xl">
+    <div className="relative isolate z-0 w-full overflow-hidden rounded-2xl">
       <MapContainer
         center={CHIANG_MAI_CENTER}
         zoom={13}
