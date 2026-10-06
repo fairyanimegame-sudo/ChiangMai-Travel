@@ -46,24 +46,26 @@ export default function ExploreFilters() {
                     ทั้งหมด
                 </button>
 
-                {categories.map(c => ( 
-                    <button 
+                {categories.map(c => (
+                    <button
                     key={c.id}
-                    onClick={() => updateUrl(undefined, c.id, undefined)} 
+                    onClick={() => updateUrl(undefined, c.id, undefined)}
                     className="px-3 py-1 border rounded hover:bg-gray-100"
                     >
-                        {c.label} 
+                        {c.label}
                     </button>
                 ))}
             </div>
 
             <div>
-                <select 
-                  onChange={(e) => updateUrl(undefined, undefined, e.target.value)} 
+                <select
+                  onChange={(e) => updateUrl(undefined, undefined, e.target.value)}
                   defaultValue={searchParams.get('sort') || ''}
                   className="border p-2 rounded"
                 >
-                  <option value="">เรียงลำดับ...</option>
+                  <option value="" disabled hidden>
+                    เรียงลำดับ...
+                  </option>
                   <option value="score">คะแนนสูงสุด</option>
                   <option value="name">ชื่อ (ก-ฮ)</option>
                 </select>
