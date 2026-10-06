@@ -12,4 +12,5 @@ export type DialectWord = {
   thai: string; // ความหมายในภาษาไทยกลาง
   example: string; // ตัวอย่างประโยคสั้น ๆ
   groupId: DialectGroupId; // กลุ่ม ใช้กรองในหน้า /dialect
+  audioSrc?: string; // path ใน public เช่น "/audio/dialect/pik.mp3" ถ้าไม่มีจะใช้เสียงสังเคราะห์
 };

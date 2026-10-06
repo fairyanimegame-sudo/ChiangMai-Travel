@@ -8,8 +8,8 @@ const links = [
   { href: "/explore", label: "สำรวจ" },
   { href: "/map", label: "แผนที่" },
   { href: "/planner", label: "จัดทริป" },
-  /* { href: "/ask-ai", label: "ถาม AI" },
-  { href: "/dialect", label: "คำเมือง" }, */
+  { href: "/ask-ai", label: "ถาม AI" },
+  { href: "/dialect", label: "คำเมือง" },
 ];
 
 export default function NavLinks() {
