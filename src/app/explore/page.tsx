@@ -1,4 +1,3 @@
-
 import { places } from "@/data/places";
 import { filterPlaces, sortPlaces } from "@/lib/places";
 import ExploreFilters from "@/components/explore/ExploreFilters";
