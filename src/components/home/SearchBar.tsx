@@ -27,7 +27,7 @@ export default function SearchBar() {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)} //เมื่อมีการพิมพ์ข้อความในช่องค้นหา จะเอาค่าที่พิมพ์ไปอัพเดตลง state query ทันที
-        placeholder="ค้าหาสถานที่ท่องเที่ยวในเชียงใหม่..."
+        placeholder="ค้นหาสถานที่ท่องเที่ยวในเชียงใหม่..."
         aria-label="ช่องค้นหา"
         className="flex-grow text-[var(--color-text)] placeholder:text-[var(--color-muted)] bg-transparent outline-none
                     px-[var(--space-4)] py-[var(--space-2)] rounded-l-[var(--radius-full)]"
