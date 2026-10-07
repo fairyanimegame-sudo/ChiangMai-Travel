@@ -1,6 +1,5 @@
 import type { Place } from "@/types/place";
 
-// หมายเหตุ: lat/lng ในไฟล์นี้เป็นค่าโดยประมาณ ต้องตรวจกับ Google Maps ก่อน merge
 export const places: Place[] = [
   {
     id: "1",
