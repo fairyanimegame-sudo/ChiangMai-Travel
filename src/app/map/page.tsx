@@ -34,15 +34,10 @@ export default function MapPage() {
 
   return (
     <main className="mx-auto w-full max-w-7xl p-4 md:p-6">
-      <h1 className="mb-4 text-2xl font-bold">
-        แผนที่เชียงใหม่
-      </h1>
+      <h1 className="mb-4 text-2xl font-bold">แผนที่เชียงใหม่</h1>
 
       <div className="grid gap-4 md:grid-cols-[1fr_320px]">
-        <PlaceMap
-          places={filteredPlaces}
-          selectedPlaceId={selectedPlaceId}
-        />
+        <PlaceMap places={filteredPlaces} selectedPlaceId={selectedPlaceId} />
 
         <MapPlaceList
           places={filteredPlaces}

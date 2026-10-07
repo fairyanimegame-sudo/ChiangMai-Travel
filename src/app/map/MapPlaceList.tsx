@@ -16,9 +16,7 @@ export default function MapPlaceList({
   if (places.length === 0) {
     return (
       <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 text-center">
-        <p className="text-sm text-[var(--color-muted)]">
-          ไม่พบสถานที่ในหมวดนี้
-        </p>
+        <p className="text-sm text-[var(--color-muted)]">ไม่พบสถานที่ในหมวดนี้</p>
       </div>
     );
   }
@@ -41,17 +39,11 @@ export default function MapPlaceList({
               } hover:border-[var(--color-primary)]`}
               aria-pressed={isSelected}
             >
-              <h3 className="font-semibold text-[var(--color-text)]">
-                {place.name}
-              </h3>
+              <h3 className="font-semibold text-[var(--color-text)]">{place.name}</h3>
 
-              <p className="mt-1 text-sm text-[var(--color-muted)]">
-                ⭐ {place.rating.toFixed(1)}
-              </p>
+              <p className="mt-1 text-sm text-[var(--color-muted)]">⭐ {place.rating.toFixed(1)}</p>
 
-              <p className="mt-2 text-xs text-[var(--color-muted)]">
-                คลิกเพื่อดูตำแหน่งบนแผนที่
-              </p>
+              <p className="mt-2 text-xs text-[var(--color-muted)]">คลิกเพื่อดูตำแหน่งบนแผนที่</p>
             </button>
           );
         })}

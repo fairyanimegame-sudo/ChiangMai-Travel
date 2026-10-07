@@ -324,8 +324,8 @@ export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
     "rounded-[var(--radius-full)] bg-white/70 px-[var(--space-2)] py-[var(--space-1)]";
 
   return (
-    <section className="container py-[var(--space-4)]" aria-label="สภาพอากาศเชียงใหม่">
-      <div className={`${cardClass} mx-auto max-w-3xl`}>
+    <section aria-busy="true" className="h-full">
+      <div className={`${cardClass} h-full`}>
         {/* ===== อากาศตอนนี้ ===== */}
         <div
           className="rounded-[var(--radius-md)] p-[var(--space-3)] md:p-[var(--space-4)]"
@@ -366,103 +366,6 @@ export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
 
           <p className="mt-[var(--space-2)] text-sm text-[color:var(--color-text)]">{tip}</p>
         </div>
-
-        {/* ===== แท็บเลือกกราฟ ===== */}
-        <div
-          role="tablist"
-          aria-label="เลือกข้อมูลที่ต้องการดู"
-          className="mt-[var(--space-3)] flex gap-[var(--space-1)]"
-        >
-          {TABS.map((item) => {
-            const isActive = item.key === tab;
-
-            return (
-              <button
-                key={item.key}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => setTab(item.key)}
-                className={`rounded-[var(--radius-full)] px-[var(--space-3)] py-[var(--space-1)] text-xs transition ${
-                  isActive
-                    ? "bg-[color:var(--color-primary-soft)] font-semibold text-[color:var(--color-primary)]"
-                    : "text-[color:var(--color-muted)] hover:bg-[color:var(--color-bg)]"
-                }`}
-              >
-                {item.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* ===== กราฟ ===== */}
-        <div role="img" aria-label={`${chartLabel[tab]}: ${chartSummary}`}>
-          {points.length > 0 &&
-            (tab === "rain" ? (
-              <RainBars values={chartValues} color={chartColor} />
-            ) : (
-              <LineChart
-                values={chartValues}
-                color={chartColor}
-                unitLabel={tab === "temp" ? "°" : ""}
-              />
-            ))}
-
-          <div
-            className="mt-[var(--space-1)] grid text-center text-[11px] text-[color:var(--color-muted)]"
-            style={{ gridTemplateColumns: `repeat(${points.length}, minmax(0, 1fr))` }}
-          >
-            {points.map((point, i) => (
-              <span key={i}>{point.label}</span>
-            ))}
-          </div>
-        </div>
-
-        {/* ===== พยากรณ์ 8 วัน ===== */}
-        <ul className="mt-[var(--space-3)] flex gap-[var(--space-1)] overflow-x-auto">
-          {daily.time.map((date, i) => {
-            const isSelected = i === selectedDay;
-            const dayInfo = getWeatherInfo(daily.weather_code[i]);
-
-            return (
-              <li key={date} className="min-w-[3.75rem] flex-1">
-                <button
-                  type="button"
-                  onClick={() => setSelectedDay(i)}
-                  aria-pressed={isSelected}
-                  className={`flex w-full flex-col items-center gap-0.5 rounded-[var(--radius-md)] border px-[var(--space-1)] py-[var(--space-2)] transition ${
-                    isSelected
-                      ? "border-[color:var(--color-primary)] bg-[color:var(--color-primary-soft)]"
-                      : "border-transparent hover:bg-[color:var(--color-bg)]"
-                  }`}
-                >
-                  <span
-                    className={`text-xs ${
-                      isSelected
-                        ? "font-bold text-[color:var(--color-primary)]"
-                        : "font-medium text-[color:var(--color-text)]"
-                    }`}
-                  >
-                    {i === 0 ? "วันนี้" : DAY_NAMES[getDayIndex(date)]}
-                  </span>
-
-                  <span className="text-2xl leading-none" aria-hidden="true" title={dayInfo.label}>
-                    {dayInfo.icon}
-                  </span>
-
-                  <span className="text-xs">
-                    <span className="font-semibold text-[color:var(--color-text)]">
-                      {Math.round(daily.temperature_2m_max[i])}°
-                    </span>{" "}
-                    <span className="text-[color:var(--color-muted)]">
-                      {Math.round(daily.temperature_2m_min[i])}°
-                    </span>
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
       </div>
     </section>
   );

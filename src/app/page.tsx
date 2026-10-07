@@ -14,21 +14,26 @@ export default function HomePage() {
     <main>
       <HeroSection />
       <CategoryChips />
-      <WeatherCard latitude={18.7883} longitude={98.9853} />
-      {/* PromoBanner x2 + WeatherCard (lat 18.7883, lng 98.9853) */}
-      <PromoBanner
-        icon="🤖"
-        title="แผนเที่ยว 3 วันจาก AI"
-        description="บอกสไตล์ที่ชอบ แล้วให้ AI จัดทริปให้"
-        href={`/ask-ai?prompt=${encodeURIComponent("ช่วยวางแผนเที่ยวเชียงใหม่ 3 วัน")}`}
-      />
-      <PromoBanner
-        icon="🏮"
-        title="เทศกาลถนนคนเดิน"
-        description="เดินเล่น ชิมของกิน ช้อปงานคราฟต์"
-        href="/explore?category=nightmarket"
-      />
-      <TripIdeaSection />
+
+      <section className="container py-[var(--space-4)]">
+        <div className="grid grid-cols-1 gap-[var(--space-4)] lg:grid-cols-2">
+          <div className="lg:col-span-2">
+            <PromoBanner
+              icon="🏮"
+              title="เทศกาลถนนคนเดิน"
+              description="เดินเล่น ชิมของกิน ช้อปงานคราฟต์"
+              href="/explore?category=nightmarket"
+            />
+          </div>
+          <PromoBanner
+            icon="🤖"
+            title="แผนเที่ยว 3 วันจาก AI"
+            description="บอกสไตล์ที่ชอบ แล้วให้ AI จัดทริปให้"
+            href={`/ask-ai?prompt=${encodeURIComponent("ช่วยวางแผนเที่ยวเชียงใหม่ 3 วัน")}`}
+          />
+          <WeatherCard latitude={18.7883} longitude={98.9853} />
+        </div>
+      </section>
 
       <PlaceSection
         title="มาแรงตอนนี้"
