@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { places } from "@/data/places";
@@ -20,13 +20,14 @@ export default function MapPage() {
   const category = searchParams.get("category");
   const placeParam = searchParams.get("place");
 
-  const [selectedPlaceId, setSelectedPlaceId] = useState<string>();
+  const [clickedPlaceId, setClickedPlaceId] = useState<string>();
 
-  useEffect(() => {
+  const selectedPlaceId = clickedPlaceId ?? placeParam ?? undefined;
+  /* useEffect(() => {
     if (placeParam) {
-      setSelectedPlaceId(placeParam);
+      setClickedPlaceId(placeParam);
     }
-  }, [placeParam]);
+  }, [placeParam]); */
 
   const filteredPlaces = category
     ? places.filter((place) => place.categoryId === category)
@@ -42,7 +43,7 @@ export default function MapPage() {
         <MapPlaceList
           places={filteredPlaces}
           selectedPlaceId={selectedPlaceId}
-          onSelectPlace={setSelectedPlaceId}
+          onSelectPlace={setClickedPlaceId}
         />
       </div>
     </main>

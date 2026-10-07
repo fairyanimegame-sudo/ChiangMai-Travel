@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useEffect, /* useId */ useState } from "react";
 import { fetchWeather, getWeatherInfo, getWeatherTip, type WeatherResponse } from "@/lib/weather";
 
 type WeatherCardProps = {
@@ -8,28 +8,28 @@ type WeatherCardProps = {
   longitude: number;
 };
 
-type TabKey = "temp" | "rain" | "wind";
-
-type ChartPoint = {
+/* type TabKey = "temp" | "rain" | "wind";
+ */
+/* type ChartPoint = {
   label: string;
   temp: number;
   rain: number;
   wind: number;
 };
-
-const TABS: { key: TabKey; label: string }[] = [
+ */
+/* const TABS: { key: TabKey; label: string }[] = [
   { key: "temp", label: "อุณหภูมิ" },
   { key: "rain", label: "โอกาสฝนตก" },
   { key: "wind", label: "ลม" },
-];
+]; */
 
 const DAY_NAMES = ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัส", "ศุกร์", "เสาร์"];
 
-const TAB_COLORS: Record<TabKey, string> = {
+/* const TAB_COLORS: Record<TabKey, string> = {
   temp: "#e8590c", // ส้มโคมล้านนา
   rain: "#3b82f6", // ฟ้าน้ำฝน
   wind: "#16a34a", // เขียวใบไม้
-};
+}; */
 
 const cardClass =
   "rounded-[var(--radius-lg)] border border-[color:var(--color-border)] bg-[var(--color-surface)] p-[var(--space-4)] [box-shadow:var(--shadow-card)]";
@@ -52,7 +52,7 @@ function getNowIndex(weather: WeatherResponse): number {
 }
 
 /** จุดบนกราฟ ห่างกันทีละ 3 ชั่วโมง (วันนี้เริ่มจากตอนนี้ วันอื่นเริ่มจาก 00:00) */
-function buildChartPoints(weather: WeatherResponse, dayIndex: number): ChartPoint[] {
+/* function buildChartPoints(weather: WeatherResponse, dayIndex: number): ChartPoint[] {
   const { hourly } = weather;
   const isToday = dayIndex === 0;
   const start = isToday ? getNowIndex(weather) : dayIndex * 24;
@@ -77,9 +77,9 @@ function buildChartPoints(weather: WeatherResponse, dayIndex: number): ChartPoin
 
   return points;
 }
-
+ */
 /** ทำเส้นโค้งนุ่ม ๆ ผ่านทุกจุด (Catmull-Rom → Bezier) */
-function smoothPath(points: { x: number; y: number }[]): string {
+/* function smoothPath(points: { x: number; y: number }[]): string {
   if (points.length < 2) {
     return "";
   }
@@ -102,7 +102,7 @@ function smoothPath(points: { x: number; y: number }[]): string {
 
   return path;
 }
-
+ */
 function formatWindUnit(unit: string): string {
   return unit === "km/h" ? "กม./ชม." : unit;
 }
@@ -111,7 +111,7 @@ function formatWindUnit(unit: string): string {
    กราฟเส้น (อุณหภูมิ / ลม)
 ========================= */
 
-function LineChart({
+/* function LineChart({
   values,
   color,
   unitLabel,
@@ -183,12 +183,12 @@ function LineChart({
     </div>
   );
 }
-
+ */
 /* =========================
    กราฟแท่ง (โอกาสฝนตก)
 ========================= */
 
-function RainBars({ values, color }: { values: number[]; color: string }) {
+/* function RainBars({ values, color }: { values: number[]; color: string }) {
   return (
     <div className="flex h-28 items-end">
       {values.map((value, i) => (
@@ -206,7 +206,7 @@ function RainBars({ values, color }: { values: number[]; color: string }) {
     </div>
   );
 }
-
+ */
 /* =========================
    การ์ดสภาพอากาศ
 ========================= */
@@ -217,9 +217,9 @@ export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
   const [error, setError] = useState<string | null>(null);
   const [reloadKey, setReloadKey] = useState(0);
 
-  const [tab, setTab] = useState<TabKey>("temp");
+  /*   const [tab, setTab] = useState<TabKey>("temp");
   const [selectedDay, setSelectedDay] = useState(0);
-
+ */
   useEffect(() => {
     let cancelled = false;
 
@@ -293,7 +293,7 @@ export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
   }
 
   /* ---------- ข้อมูลปัจจุบัน ---------- */
-  const { current, current_units: units, daily } = weather;
+  const { current, current_units: units /* daily */ } = weather;
 
   const nowIndex = getNowIndex(weather);
   const rainChanceNow = Math.round(weather.hourly.precipitation_probability[nowIndex] ?? 0);
@@ -308,18 +308,18 @@ export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
   const nowClock = current.time.slice(11, 16);
 
   /* ---------- กราฟ ---------- */
- /*  const points = buildChartPoints(weather, selectedDay);
+  /*  const points = buildChartPoints(weather, selectedDay);
   const chartValues = points.map((point) => point[tab]);
   const chartColor = TAB_COLORS[tab]; */
 
-  const chartLabel: Record<TabKey, string> = {
+  /*   const chartLabel: Record<TabKey, string> = {
     temp: `อุณหภูมิ (${units.temperature_2m})`,
     rain: "โอกาสฝนตก (%)",
     wind: `ความเร็วลม (${formatWindUnit(units.wind_speed_10m)})`,
   };
-
-/*   const chartSummary = points.map((point) => `${point.label} ${point[tab]}`).join(", ");
  */
+  /*   const chartSummary = points.map((point) => `${point.label} ${point[tab]}`).join(", ");
+   */
   const chipClass =
     "rounded-[var(--radius-full)] bg-white/70 px-[var(--space-2)] py-[var(--space-1)]";
 

@@ -2,8 +2,8 @@ import PlaceSection, {
   getRecommendedPlaces,
   getTrendingPlaces,
 } from "@/components/home/PlaceSection";
-import TripIdeaSection from "@/components/home/TripIdeaSection";
-import CategoryChips from "@/components/home/CategoryChips";
+/* import TripIdeaSection from "@/components/home/TripIdeaSection";
+ */ import CategoryChips from "@/components/home/CategoryChips";
 import HeroSection from "@/components/home/HeroSection";
 import WeatherCard from "@/components/home/WeatherCard";
 import { places } from "@/data/places";

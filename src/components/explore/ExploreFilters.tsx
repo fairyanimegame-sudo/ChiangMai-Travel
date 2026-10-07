@@ -4,24 +4,26 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { categories } from "@/data/categories";
 
+// undefined = "ไม่แตะค่านี้", "" = "ล้างค่านี้", มีค่า = "ตั้งค่า"
+function setOrDelete(params: URLSearchParams, key: string, value?: string) {
+  if (value === undefined) return;
+  if (value) params.set(key, value);
+  else params.delete(key);
+}
+
 export default function ExploreFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
+  // อ่าน key "q" ให้ตรงกับที่ explore/page.tsx และ SearchBar ใช้
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
 
   const updateUrl = (newQ?: string, newCategory?: string, newSort?: string) => {
     const params = new URLSearchParams(searchParams.toString());
 
-    if (newQ !== undefined) {
-      newQ ? params.set("q", newQ) : params.delete("q");
-    }
-    if (newCategory !== undefined) {
-      newCategory ? params.set("category", newCategory) : params.delete("category");
-    }
-    if (newSort !== undefined) {
-      newSort ? params.set("sort", newSort) : params.delete("sort");
-    }
+    setOrDelete(params, "q", newQ);
+    setOrDelete(params, "category", newCategory);
+    setOrDelete(params, "sort", newSort);
 
     router.push(`/explore?${params.toString()}`);
   };
@@ -72,7 +74,7 @@ export default function ExploreFilters() {
           <option value="" disabled hidden>
             เรียงลำดับ...
           </option>
-          <option value="score">คะแนนสูงสุด</option>
+          <option value="rating">คะแนนสูงสุด</option>
           <option value="name">ชื่อ (ก-ฮ)</option>
         </select>
       </div>
