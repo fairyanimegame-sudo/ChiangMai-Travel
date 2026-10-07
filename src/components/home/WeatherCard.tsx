@@ -308,9 +308,9 @@ export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
   const nowClock = current.time.slice(11, 16);
 
   /* ---------- กราฟ ---------- */
-  const points = buildChartPoints(weather, selectedDay);
+ /*  const points = buildChartPoints(weather, selectedDay);
   const chartValues = points.map((point) => point[tab]);
-  const chartColor = TAB_COLORS[tab];
+  const chartColor = TAB_COLORS[tab]; */
 
   const chartLabel: Record<TabKey, string> = {
     temp: `อุณหภูมิ (${units.temperature_2m})`,
@@ -318,8 +318,8 @@ export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
     wind: `ความเร็วลม (${formatWindUnit(units.wind_speed_10m)})`,
   };
 
-  const chartSummary = points.map((point) => `${point.label} ${point[tab]}`).join(", ");
-
+/*   const chartSummary = points.map((point) => `${point.label} ${point[tab]}`).join(", ");
+ */
   const chipClass =
     "rounded-[var(--radius-full)] bg-white/70 px-[var(--space-2)] py-[var(--space-1)]";
 
