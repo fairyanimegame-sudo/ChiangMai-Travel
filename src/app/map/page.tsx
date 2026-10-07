@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { places } from "@/data/places";
@@ -20,13 +20,14 @@ export default function MapPage() {
   const category = searchParams.get("category");
   const placeParam = searchParams.get("place");
 
-  const [selectedPlaceId, setSelectedPlaceId] = useState<string>();
+  const [clickedPlaceId, setClickedPlaceId] = useState<string>();
 
-  useEffect(() => {
+  const selectedPlaceId = clickedPlaceId ?? placeParam ?? undefined;
+  /* useEffect(() => {
     if (placeParam) {
-      setSelectedPlaceId(placeParam);
+      setClickedPlaceId(placeParam);
     }
-  }, [placeParam]);
+  }, [placeParam]); */
 
   const filteredPlaces = category
     ? places.filter((place) => place.categoryId === category)
@@ -34,20 +35,15 @@ export default function MapPage() {
 
   return (
     <main className="mx-auto w-full max-w-7xl p-4 md:p-6">
-      <h1 className="mb-4 text-2xl font-bold">
-        แผนที่เชียงใหม่
-      </h1>
+      <h1 className="mb-4 text-2xl font-bold">แผนที่เชียงใหม่</h1>
 
       <div className="grid gap-4 md:grid-cols-[1fr_320px]">
-        <PlaceMap
-          places={filteredPlaces}
-          selectedPlaceId={selectedPlaceId}
-        />
+        <PlaceMap places={filteredPlaces} selectedPlaceId={selectedPlaceId} />
 
         <MapPlaceList
           places={filteredPlaces}
           selectedPlaceId={selectedPlaceId}
-          onSelectPlace={setSelectedPlaceId}
+          onSelectPlace={setClickedPlaceId}
         />
       </div>
     </main>

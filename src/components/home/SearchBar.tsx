@@ -21,7 +21,7 @@ export default function SearchBar() {
       onSubmit={handleSubmit} //ผูกฟังก์ชัน handleSubmit เข้ากับ event onSubmit ของ form
       //ตกแต่ง SearchBar
       className="flex items-center w-full max-w-lg mx-auto bg-[var(--color-surface)] rounded-[var(--radius-full)]
-            p-[var(--space-2)] shadow-[var(--shadow-card)]"
+            p-[var(--space-4)] shadow-[var(--shadow-card)] gap-2"
     >
       <input //ช่องค้นหา
         type="text"
@@ -30,7 +30,7 @@ export default function SearchBar() {
         placeholder="ค้นหาสถานที่ท่องเที่ยวในเชียงใหม่..."
         aria-label="ช่องค้นหา"
         className="flex-grow text-[var(--color-text)] placeholder:text-[var(--color-muted)] bg-transparent outline-none
-                    px-[var(--space-4)] py-[var(--space-2)] rounded-l-[var(--radius-full)]"
+                    px-[var(--space-4)] py-[var(--space-2)] rounded-[var(--radius-full)]"
       />
       <button
         type="submit"

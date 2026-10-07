@@ -3,13 +3,7 @@
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useEffect, useState } from "react";
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  useMap,
-} from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import type { Place } from "@/types/place";
 
 type PlaceMapProps = {
@@ -74,13 +68,7 @@ function createMarkerIcon(categoryId: string) {
    เลื่อนแผนที่ไปยังสถานที่ที่เลือก
 ========================= */
 
-function MapFocus({
-  places,
-  selectedPlaceId,
-}: {
-  places: Place[];
-  selectedPlaceId?: string;
-}) {
+function MapFocus({ places, selectedPlaceId }: { places: Place[]; selectedPlaceId?: string }) {
   const map = useMap();
 
   useEffect(() => {
@@ -88,21 +76,15 @@ function MapFocus({
       return;
     }
 
-    const selectedPlace = places.find(
-      (place) => place.id === selectedPlaceId,
-    );
+    const selectedPlace = places.find((place) => place.id === selectedPlaceId);
 
     if (!selectedPlace) {
       return;
     }
 
-    map.flyTo(
-      [selectedPlace.lat, selectedPlace.lng],
-      16,
-      {
-        duration: 0.8,
-      },
-    );
+    map.flyTo([selectedPlace.lat, selectedPlace.lng], 16, {
+      duration: 0.8,
+    });
   }, [map, places, selectedPlaceId]);
 
   return null;
@@ -163,10 +145,7 @@ function MyLocation() {
    แผนที่
 ========================= */
 
-export default function PlaceMap({
-  places,
-  selectedPlaceId,
-}: PlaceMapProps) {
+export default function PlaceMap({ places, selectedPlaceId }: PlaceMapProps) {
   return (
     <div className="relative isolate z-0 w-full overflow-hidden rounded-2xl">
       <MapContainer
@@ -177,10 +156,7 @@ export default function PlaceMap({
       >
         <MyLocation />
 
-        <MapFocus
-          places={places}
-          selectedPlaceId={selectedPlaceId}
-        />
+        <MapFocus places={places} selectedPlaceId={selectedPlaceId} />
 
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -195,13 +171,9 @@ export default function PlaceMap({
           >
             <Popup>
               <div className="min-w-[180px]">
-                <h3 className="font-semibold">
-                  {place.name}
-                </h3>
+                <h3 className="font-semibold">{place.name}</h3>
 
-                <p className="mt-1">
-                  คะแนน: {place.rating.toFixed(1)}
-                </p>
+                <p className="mt-1">คะแนน: {place.rating.toFixed(1)}</p>
 
                 <a
                   href={`/explore/${place.id}`}

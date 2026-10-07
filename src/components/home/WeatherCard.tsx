@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useEffect, /* useId */ useState } from "react";
 import { fetchWeather, getWeatherInfo, getWeatherTip, type WeatherResponse } from "@/lib/weather";
 
 type WeatherCardProps = {
@@ -8,28 +8,28 @@ type WeatherCardProps = {
   longitude: number;
 };
 
-type TabKey = "temp" | "rain" | "wind";
-
-type ChartPoint = {
+/* type TabKey = "temp" | "rain" | "wind";
+ */
+/* type ChartPoint = {
   label: string;
   temp: number;
   rain: number;
   wind: number;
 };
-
-const TABS: { key: TabKey; label: string }[] = [
+ */
+/* const TABS: { key: TabKey; label: string }[] = [
   { key: "temp", label: "อุณหภูมิ" },
   { key: "rain", label: "โอกาสฝนตก" },
   { key: "wind", label: "ลม" },
-];
+]; */
 
 const DAY_NAMES = ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัส", "ศุกร์", "เสาร์"];
 
-const TAB_COLORS: Record<TabKey, string> = {
+/* const TAB_COLORS: Record<TabKey, string> = {
   temp: "#e8590c", // ส้มโคมล้านนา
   rain: "#3b82f6", // ฟ้าน้ำฝน
   wind: "#16a34a", // เขียวใบไม้
-};
+}; */
 
 const cardClass =
   "rounded-[var(--radius-lg)] border border-[color:var(--color-border)] bg-[var(--color-surface)] p-[var(--space-4)] [box-shadow:var(--shadow-card)]";
@@ -52,7 +52,7 @@ function getNowIndex(weather: WeatherResponse): number {
 }
 
 /** จุดบนกราฟ ห่างกันทีละ 3 ชั่วโมง (วันนี้เริ่มจากตอนนี้ วันอื่นเริ่มจาก 00:00) */
-function buildChartPoints(weather: WeatherResponse, dayIndex: number): ChartPoint[] {
+/* function buildChartPoints(weather: WeatherResponse, dayIndex: number): ChartPoint[] {
   const { hourly } = weather;
   const isToday = dayIndex === 0;
   const start = isToday ? getNowIndex(weather) : dayIndex * 24;
@@ -77,9 +77,9 @@ function buildChartPoints(weather: WeatherResponse, dayIndex: number): ChartPoin
 
   return points;
 }
-
+ */
 /** ทำเส้นโค้งนุ่ม ๆ ผ่านทุกจุด (Catmull-Rom → Bezier) */
-function smoothPath(points: { x: number; y: number }[]): string {
+/* function smoothPath(points: { x: number; y: number }[]): string {
   if (points.length < 2) {
     return "";
   }
@@ -102,7 +102,7 @@ function smoothPath(points: { x: number; y: number }[]): string {
 
   return path;
 }
-
+ */
 function formatWindUnit(unit: string): string {
   return unit === "km/h" ? "กม./ชม." : unit;
 }
@@ -111,7 +111,7 @@ function formatWindUnit(unit: string): string {
    กราฟเส้น (อุณหภูมิ / ลม)
 ========================= */
 
-function LineChart({
+/* function LineChart({
   values,
   color,
   unitLabel,
@@ -183,12 +183,12 @@ function LineChart({
     </div>
   );
 }
-
+ */
 /* =========================
    กราฟแท่ง (โอกาสฝนตก)
 ========================= */
 
-function RainBars({ values, color }: { values: number[]; color: string }) {
+/* function RainBars({ values, color }: { values: number[]; color: string }) {
   return (
     <div className="flex h-28 items-end">
       {values.map((value, i) => (
@@ -206,7 +206,7 @@ function RainBars({ values, color }: { values: number[]; color: string }) {
     </div>
   );
 }
-
+ */
 /* =========================
    การ์ดสภาพอากาศ
 ========================= */
@@ -217,9 +217,9 @@ export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
   const [error, setError] = useState<string | null>(null);
   const [reloadKey, setReloadKey] = useState(0);
 
-  const [tab, setTab] = useState<TabKey>("temp");
+  /*   const [tab, setTab] = useState<TabKey>("temp");
   const [selectedDay, setSelectedDay] = useState(0);
-
+ */
   useEffect(() => {
     let cancelled = false;
 
@@ -293,7 +293,7 @@ export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
   }
 
   /* ---------- ข้อมูลปัจจุบัน ---------- */
-  const { current, current_units: units, daily } = weather;
+  const { current, current_units: units /* daily */ } = weather;
 
   const nowIndex = getNowIndex(weather);
   const rainChanceNow = Math.round(weather.hourly.precipitation_probability[nowIndex] ?? 0);
@@ -308,24 +308,24 @@ export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
   const nowClock = current.time.slice(11, 16);
 
   /* ---------- กราฟ ---------- */
-  const points = buildChartPoints(weather, selectedDay);
+  /*  const points = buildChartPoints(weather, selectedDay);
   const chartValues = points.map((point) => point[tab]);
-  const chartColor = TAB_COLORS[tab];
+  const chartColor = TAB_COLORS[tab]; */
 
-  const chartLabel: Record<TabKey, string> = {
+  /*   const chartLabel: Record<TabKey, string> = {
     temp: `อุณหภูมิ (${units.temperature_2m})`,
     rain: "โอกาสฝนตก (%)",
     wind: `ความเร็วลม (${formatWindUnit(units.wind_speed_10m)})`,
   };
-
-  const chartSummary = points.map((point) => `${point.label} ${point[tab]}`).join(", ");
-
+ */
+  /*   const chartSummary = points.map((point) => `${point.label} ${point[tab]}`).join(", ");
+   */
   const chipClass =
     "rounded-[var(--radius-full)] bg-white/70 px-[var(--space-2)] py-[var(--space-1)]";
 
   return (
-    <section className="container py-[var(--space-4)]" aria-label="สภาพอากาศเชียงใหม่">
-      <div className={`${cardClass} mx-auto max-w-3xl`}>
+    <section aria-busy="true" className="h-full">
+      <div className={`${cardClass} h-full`}>
         {/* ===== อากาศตอนนี้ ===== */}
         <div
           className="rounded-[var(--radius-md)] p-[var(--space-3)] md:p-[var(--space-4)]"
@@ -366,103 +366,6 @@ export default function WeatherCard({ latitude, longitude }: WeatherCardProps) {
 
           <p className="mt-[var(--space-2)] text-sm text-[color:var(--color-text)]">{tip}</p>
         </div>
-
-        {/* ===== แท็บเลือกกราฟ ===== */}
-        <div
-          role="tablist"
-          aria-label="เลือกข้อมูลที่ต้องการดู"
-          className="mt-[var(--space-3)] flex gap-[var(--space-1)]"
-        >
-          {TABS.map((item) => {
-            const isActive = item.key === tab;
-
-            return (
-              <button
-                key={item.key}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => setTab(item.key)}
-                className={`rounded-[var(--radius-full)] px-[var(--space-3)] py-[var(--space-1)] text-xs transition ${
-                  isActive
-                    ? "bg-[color:var(--color-primary-soft)] font-semibold text-[color:var(--color-primary)]"
-                    : "text-[color:var(--color-muted)] hover:bg-[color:var(--color-bg)]"
-                }`}
-              >
-                {item.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* ===== กราฟ ===== */}
-        <div role="img" aria-label={`${chartLabel[tab]}: ${chartSummary}`}>
-          {points.length > 0 &&
-            (tab === "rain" ? (
-              <RainBars values={chartValues} color={chartColor} />
-            ) : (
-              <LineChart
-                values={chartValues}
-                color={chartColor}
-                unitLabel={tab === "temp" ? "°" : ""}
-              />
-            ))}
-
-          <div
-            className="mt-[var(--space-1)] grid text-center text-[11px] text-[color:var(--color-muted)]"
-            style={{ gridTemplateColumns: `repeat(${points.length}, minmax(0, 1fr))` }}
-          >
-            {points.map((point, i) => (
-              <span key={i}>{point.label}</span>
-            ))}
-          </div>
-        </div>
-
-        {/* ===== พยากรณ์ 8 วัน ===== */}
-        <ul className="mt-[var(--space-3)] flex gap-[var(--space-1)] overflow-x-auto">
-          {daily.time.map((date, i) => {
-            const isSelected = i === selectedDay;
-            const dayInfo = getWeatherInfo(daily.weather_code[i]);
-
-            return (
-              <li key={date} className="min-w-[3.75rem] flex-1">
-                <button
-                  type="button"
-                  onClick={() => setSelectedDay(i)}
-                  aria-pressed={isSelected}
-                  className={`flex w-full flex-col items-center gap-0.5 rounded-[var(--radius-md)] border px-[var(--space-1)] py-[var(--space-2)] transition ${
-                    isSelected
-                      ? "border-[color:var(--color-primary)] bg-[color:var(--color-primary-soft)]"
-                      : "border-transparent hover:bg-[color:var(--color-bg)]"
-                  }`}
-                >
-                  <span
-                    className={`text-xs ${
-                      isSelected
-                        ? "font-bold text-[color:var(--color-primary)]"
-                        : "font-medium text-[color:var(--color-text)]"
-                    }`}
-                  >
-                    {i === 0 ? "วันนี้" : DAY_NAMES[getDayIndex(date)]}
-                  </span>
-
-                  <span className="text-2xl leading-none" aria-hidden="true" title={dayInfo.label}>
-                    {dayInfo.icon}
-                  </span>
-
-                  <span className="text-xs">
-                    <span className="font-semibold text-[color:var(--color-text)]">
-                      {Math.round(daily.temperature_2m_max[i])}°
-                    </span>{" "}
-                    <span className="text-[color:var(--color-muted)]">
-                      {Math.round(daily.temperature_2m_min[i])}°
-                    </span>
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
       </div>
     </section>
   );

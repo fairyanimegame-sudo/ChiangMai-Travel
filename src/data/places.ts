@@ -1,6 +1,5 @@
 import type { Place } from "@/types/place";
 
-// หมายเหตุ: lat/lng ในไฟล์นี้เป็นค่าโดยประมาณ ต้องตรวจกับ Google Maps ก่อน merge
 export const places: Place[] = [
   {
     id: "1",
@@ -128,7 +127,7 @@ export const places: Place[] = [
     categoryId: "nature",
     rating: 4.8,
     image: "/images/places/elephant-nature-park.jpg",
-    lat: 19.2140,
+    lat: 19.214,
     lng: 98.8572,
     description:
       "ศูนย์ดูแลและฟื้นฟูช้างที่ได้รับการช่วยเหลือ ผู้มาเยือนได้ใกล้ชิดช้างในธรรมชาติโดยไม่มีการขี่หรือแสดง",
