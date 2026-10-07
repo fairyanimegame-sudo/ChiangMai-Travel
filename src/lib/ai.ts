@@ -8,7 +8,7 @@ import type { ChatMessage } from "@/types/chat";
 // ชื่อโมเดลของ Gemini เปลี่ยนบ่อย ตั้งทับได้ด้วย AI_MODEL ใน .env.local โดยไม่ต้องแก้โค้ด
 const DEFAULT_MODEL = "gemini-3.8-flash";
 const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models";
-const TIMEOUT_MS = 15_000;
+const TIMEOUT_MS = 30_000;
 const MAX_HISTORY = 10; // ส่งให้ AI แค่ข้อความล่าสุดกี่ข้อความ (ประหยัด token)
 
 export type AiErrorKind = "missing-key" | "timeout" | "upstream" | "empty";

@@ -1,13 +1,13 @@
-import { getPlaceById, filterPlaces } from '@/lib/places';
-import { places } from '@/data/places';
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import Link from 'next/link';
+import { getPlaceById, filterPlaces } from "@/lib/places";
+import { places } from "@/data/places";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
   const place = getPlaceById(resolvedParams.id);
-  return { title: place ? `${place.name} - Nihao Chiang Mai` : 'ไม่พบสถานที่' };
+  return { title: place ? `${place.name} - Nihao Chiang Mai` : "ไม่พบสถานที่" };
 }
 
 export default async function PlaceDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -19,19 +19,14 @@ export default async function PlaceDetailPage({ params }: { params: Promise<{ id
   }
 
   const similarPlaces = filterPlaces(places, { categoryId: place.categoryId })
-                        .filter(p => p.id !== place.id).slice(0, 3);
+    .filter((p) => p.id !== place.id)
+    .slice(0, 3);
 
   return (
     <main className="container mx-auto p-4 min-h-screen">
-
       {/* ส่วนรูปภาพใหญ่ด้านบน */}
       <div className="relative w-full h-[300px] md:h-[500px] mb-8">
-        <Image
-          src={place.image}
-          alt={place.name}
-          fill
-          className="object-cover rounded-xl"
-        />
+        <Image src={place.image} alt={place.name} fill className="object-cover rounded-xl" />
       </div>
 
       {/* ส่วนข้อมูลและรายละเอียด */}
@@ -61,13 +56,12 @@ export default async function PlaceDetailPage({ params }: { params: Promise<{ id
       {/* ส่วนสถานที่ที่คล้ายกัน */}
       <h2 className="text-2xl font-bold mb-6">สถานที่ที่คล้ายกัน</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {similarPlaces.map(sp => (
+        {similarPlaces.map((sp) => (
           <div key={sp.id} className="border p-4 rounded shadow bg-white">
             <h3 className="font-bold">{sp.name}</h3>
           </div>
         ))}
       </div>
-
     </main>
   );
 }

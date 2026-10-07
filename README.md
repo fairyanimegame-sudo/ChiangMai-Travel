@@ -4,7 +4,6 @@
 
 🔗 **Demo:** https://your-site.com
 
-
 ## ✨ ฟีเจอร์
 
 - แผนที่
@@ -14,7 +13,7 @@
 - ถาม AI
 
 ## 🧰 เทคโนโลยีที่ใช้
- 
+
 - [Next.js](https://nextjs.org) 16 (App Router) + [React](https://react.dev) 19
 - TypeScript (strict mode)
 - [Tailwind CSS](https://tailwindcss.com) v4 + CSS Modules + design tokens ใน `globals.css`
@@ -27,20 +26,20 @@
 ## 🚀 เริ่มต้นใช้งาน
 
 ### สิ่งที่ต้องมี
- 
+
 - Node.js 20.9 ขึ้นไป
 - npm
 
 ### ติดตั้งและรัน
- 
+
 ```bash
 # 1) ติดตั้ง dependencies
 npm install
- 
+
 # 2) สร้างไฟล์ environment
 cp .env.example .env.local
 # แล้วใส่ AI_API_KEY ใน .env.local (ดูหัวข้อถัดไป)
- 
+
 # 3) รันโหมดพัฒนา
 npm run dev
 ```
@@ -53,9 +52,9 @@ npm run dev
 cp .env.example .env
 ```
 
-| ตัวแปร | คำอธิบาย |
-|--------|----------|
-| `PORT` | พอร์ตที่เซิร์ฟเวอร์ใช้ |
+| ตัวแปร         | คำอธิบาย                |
+| -------------- | ----------------------- |
+| `PORT`         | พอร์ตที่เซิร์ฟเวอร์ใช้  |
 | `DATABASE_URL` | ลิงก์เชื่อมต่อฐานข้อมูล |
 
 ### รันโปรเจกต์
@@ -67,7 +66,7 @@ npm run dev
 เปิดเบราว์เซอร์ที่ http://localhost:3000
 
 ## 📁 โครงสร้างโปรเจค
- 
+
 ```text
 .
 ├── public/
